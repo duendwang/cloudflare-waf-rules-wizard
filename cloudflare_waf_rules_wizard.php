@@ -208,8 +208,7 @@ function pw_cloudflare_ruleset_manager_process_zones() {
     $rules = [
         [
             'description' => 'Good Bots Allow',
-            'expression' => '(cf.client.bot) or (cf.verified_bot_category in {"Search Engine Crawler" "Search Engine Optimization" "Monitoring & Analytics" "Advertising & Marketing" "Page Preview" "Academic Research" "Security" "Accessibility" "Webhooks" "Feed Fetcher"}) or (http.user_agent contains "letsencrypt" and http.request.uri.path contains "acme-challenge") or (http.user_agent contains "ExactDN")',
-            'action' => 'skip',
+            'expression' => '(cf.client.bot) or (cf.verified_bot_category in {"Search Engine Crawler" "Search Engine Optimization" "Monitoring & Analytics" "Advertising & Marketing" "Page Preview" "Academic Research" "Security" "Accessibility" "Webhooks" "Feed Fetcher"}) or (http.user_agent contains "letsencrypt" and http.request.uri.path contains "acme-challenge") or (http.user_agent contains "ExactDN") or (http.user_agent contains "Cookiebot") or (http.user_agent contains "Usercentrics")  or (ip.src in {18.221.197.243 52.15.237.250 3.19.3.34 3.18.238.17 13.58.49.77 18.222.191.77 3.131.108.250 3.23.157.140 3.140.84.221 3.133.121.93 18.219.61.133 3.14.29.150 18.224.116.108 94.130.134.133 54.68.32.247 44.235.211.232 54.71.203.174 47.37.138.167 5.78.94.34 13.74.44.241 23.100.63.22 34.77.37.78 34.111.104.227 34.111.239.10 34.149.178.113 34.159.155.33 40.91.211.73 40.118.23.197 52.232.29.198 52.87.44.246 52.44.29.90 35.193.73.144 35.224.81.47 34.28.89.118 104.154.190.241 34.132.51.56 104.154.215.52 34.70.208.120 35.184.133.43 34.134.204.4 34.132.185.170 34.45.119.146 34.67.75.186})',            'action' => 'skip',
             'action_parameters' => [
                 'ruleset' => 'current',
                 'phases' => ['http_ratelimit', 'http_request_sbfm', 'http_request_firewall_managed'],
